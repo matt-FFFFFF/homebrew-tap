@@ -19,7 +19,10 @@ brew install matt-FFFFFF/tap/<formula>
 
 <!-- FORMULAE:START -->
 <!-- This section is auto-generated. Do not edit manually. -->
-_No formulae yet._
+
+| Name | Description | Version | Type |
+| ---- | ----------- | ------- | ---- |
+| [tfpluginschema](https://github.com/matt-FFFFFF/tfpluginschema) | Download and retrieve schemas from Terraform/OpenTofu providers using the Terraform Plugin Protocol (v5 and v6). | 0.10.0 | formula |
 <!-- FORMULAE:END -->
 
 ## Tools

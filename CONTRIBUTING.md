@@ -6,8 +6,46 @@ any manual changes will be overwritten by the next release.
 
 ## How releases land here
 
-Each tool repo (e.g. `tfpluginschema`, `tfmoduleschema`) has a GoReleaser
-configuration with a `brews:` block pointing at this tap:
+Each tool repo (e.g. `tfpluginschema`, `tfmoduleschema`) publishes to this tap
+from its release workflow. Authentication is done via a dedicated GitHub App
+installed on this repo with `contents: write` permission.
+
+### Tool repo release workflow
+
+The workflow mints a short-lived installation token from the App's
+**client ID** and **private key** (stored as repo/org secrets) and passes it to
+GoReleaser via an env var:
+
+```yaml
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate tap token
+        id: tap-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.HOMEBREW_TAP_APP_CLIENT_ID }}
+          private-key: ${{ secrets.HOMEBREW_TAP_APP_PRIVATE_KEY }}
+          owner: matt-FFFFFF
+          repositories: homebrew-tap
+
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_TOKEN: ${{ steps.tap-token.outputs.token }}
+```
+
+### Tool repo `.goreleaser.yaml`
 
 ```yaml
 brews:
@@ -22,8 +60,13 @@ brews:
     license: <license>
 ```
 
-On release, GoReleaser authenticates as a GitHub App installed on this repo
-(with `contents: write`) and commits the updated formula to `Formula/`.
+GoReleaser then commits the updated formula to `Formula/` in this tap using
+the App's identity.
+
+> **Why not pass the App client ID/private key directly to GoReleaser?**
+> GoReleaser's `repository:` block accepts a `token:` (or SSH `git:` block),
+> but does not mint App installation tokens itself. The idiomatic approach is
+> to mint the token in a preceding workflow step and pass it via `token:`.
 
 ## README auto-update
 
@@ -38,8 +81,9 @@ runs [`scripts/update-readme.sh`](./scripts/update-readme.sh), which:
 3. Commits the result using `GITHUB_TOKEN` (which, by design, does not trigger
    further workflow runs — avoiding a loop).
 
-Because GoReleaser's commit is made with a GitHub App token, it _does_ trigger
-the README workflow; the subsequent README commit with `GITHUB_TOKEN` does not.
+Because GoReleaser's commit is made with the App installation token, it _does_
+trigger the README workflow; the subsequent README commit with `GITHUB_TOKEN`
+does not.
 
 ## Making changes to the tap itself
 

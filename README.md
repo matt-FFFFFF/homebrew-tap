@@ -26,11 +26,6 @@ brew install matt-FFFFFF/tap/<formula>
 | [tfpluginschema](https://github.com/matt-FFFFFF/tfpluginschema) | Download and retrieve schemas from Terraform/OpenTofu providers using the Terraform Plugin Protocol (v5 and v6). | 0.10.0 | formula |
 <!-- FORMULAE:END -->
 
-## Tools
-
-- [**tfpluginschema**](https://github.com/matt-FFFFFF/tfpluginschema) — Terraform provider plugin schema tooling.
-- [**tfmoduleschema**](https://github.com/matt-FFFFFF/tfmoduleschema) — Terraform module schema tooling.
-
 ## License
 
 See individual tool repositories for their respective licenses.

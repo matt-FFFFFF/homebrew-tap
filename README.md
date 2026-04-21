@@ -22,7 +22,7 @@ brew install matt-FFFFFF/tap/<formula>
 
 | Name | Description | Version | Type |
 | ---- | ----------- | ------- | ---- |
-| [tfmoduleschema](https://github.com/matt-FFFFFF/tfmoduleschema) | Return the variables, outputs, required providers, available versions, and submodules for any Terraform module in the OpenTofu or HashiCorp Terraform module registries. | 0.1.1 | formula |
+| [tfmoduleschema](https://github.com/matt-FFFFFF/tfmoduleschema) | Return the variables, outputs, required providers, available versions, and submodules for any Terraform module in the OpenTofu or HashiCorp Terraform module registries. | 0.2.0 | formula |
 | [tfpluginschema](https://github.com/matt-FFFFFF/tfpluginschema) | Download and retrieve schemas from Terraform/OpenTofu providers using the Terraform Plugin Protocol (v5 and v6). | 0.10.0 | formula |
 <!-- FORMULAE:END -->
 

@@ -5,21 +5,21 @@
 class Tfmoduleschema < Formula
   desc "Return the variables, outputs, required providers, available versions, and submodules for any Terraform module in the OpenTofu or HashiCorp Terraform module registries."
   homepage "https://github.com/matt-FFFFFF/tfmoduleschema"
-  version "0.2.1"
+  version "0.3.0"
   license "MPL-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.2.1/tfmoduleschema_0.2.1_darwin_amd64.tar.gz"
-      sha256 "47d184638a6fc16eb6fb728b56a34b51a9e9bc69518395e43eb3fec157b01637"
+      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.3.0/tfmoduleschema_0.3.0_darwin_amd64.tar.gz"
+      sha256 "a5eec2f05d74b7b2d50df1ed77dd5cdcbafc7a0fbcea46b9d2d782450c0d67a0"
 
       define_method(:install) do
         bin.install "tfmoduleschema"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.2.1/tfmoduleschema_0.2.1_darwin_arm64.tar.gz"
-      sha256 "99b0999af79dcc3699e74d2f39c8066f815bfc580262ec6b2009a7a23e29cd59"
+      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.3.0/tfmoduleschema_0.3.0_darwin_arm64.tar.gz"
+      sha256 "61554af73954e82cb504ecb2cd0bcf5a7f8121571378c4f3ef8c33f5695c8e46"
 
       define_method(:install) do
         bin.install "tfmoduleschema"
@@ -29,15 +29,15 @@ class Tfmoduleschema < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.2.1/tfmoduleschema_0.2.1_linux_amd64.tar.gz"
-      sha256 "69e4914c5a46c748661ac766c0dde2c85d7a75f7a5c6c1a68498438aa493d1bf"
+      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.3.0/tfmoduleschema_0.3.0_linux_amd64.tar.gz"
+      sha256 "cd430043b06eb4aac9dca3a8d1b33538ed8ae99f2b744e1c79482a74d2f94f98"
       define_method(:install) do
         bin.install "tfmoduleschema"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.2.1/tfmoduleschema_0.2.1_linux_arm64.tar.gz"
-      sha256 "37a698262d4fe1ef66f6023f67b6c8a888af6a3a319f6d5d1e8c9674aceed603"
+      url "https://github.com/matt-FFFFFF/tfmoduleschema/releases/download/v0.3.0/tfmoduleschema_0.3.0_linux_arm64.tar.gz"
+      sha256 "aca7d44a22ccd5e59253382758d53ec1fa231d9642231f23a7fa410da1e9f47f"
       define_method(:install) do
         bin.install "tfmoduleschema"
       end
